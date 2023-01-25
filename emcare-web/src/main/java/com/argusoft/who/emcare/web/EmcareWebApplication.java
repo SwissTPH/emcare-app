@@ -19,7 +19,7 @@ public class EmcareWebApplication extends SpringBootServletInitializer {
         ConfigurableApplicationContext context = SpringApplication.run(EmcareWebApplication.class, args);
 
 //        Translate Newly Added Label On Server Up
-        context.getBean(LanguageServiceImpl.class).translateNewlyAddedLabels();
+        //context.getBean(LanguageServiceImpl.class).translateNewlyAddedLabels();
     }
 
 }
