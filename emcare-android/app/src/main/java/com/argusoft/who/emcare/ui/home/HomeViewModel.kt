@@ -302,7 +302,7 @@ class HomeViewModel @Inject constructor(
             //Evaluating Library
             val parameters = fhirOperator.evaluateLibrary(cqlLibraryURL, patientId, expressionSet, parameterObject) as Parameters
             //Inject parameters to appropriate places
-            questionnaire.item.forEach { item ->
+                questionnaire.item.forEach { item ->
                 if(item.hasExtension(URL_INITIAL_EXPRESSION)) {
                     val value = parameters.getParameter((item.getExtensionByUrl(URL_INITIAL_EXPRESSION).value as Expression).expression) //parameter has same name as linkId
                     //inject value in the QuestionnaireItem as InitialComponent

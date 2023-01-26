@@ -7,6 +7,7 @@ import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,14 +28,30 @@ public class KeyCloakConfig {
     HttpServletRequest request;
 
     Keycloak keycloak = null;
-    public static final String SERVER_URL = "https://emcare.argusoft.com/auth";
-    public static final String CLIENT_SECRET = "b5a37bde-8d54-4837-a8dc-12e1f808e26e";
-    public static final String CLIENT_ID = "emcare";
-    public static final String REALM = "emcare";
-    public static final String USER_NAME = "emcare_admin";
-    public static final String PASSWORD = "argusadmin";
-    public static final String MASTER_USER_ID = "emcare@gmail.com";
-    public static final String MASTER_USER_PASSWORD = "argusadmin";
+
+    @Value("${KEYCLOACK_SERVER_URL:https://emcare.argusoft.com/auth}")
+    public static  String SERVER_URL;
+
+    @Value("${KEYCLOACK_CLIENT_SECRET:b5a37bde-8d54-4837-a8dc-12e1f808e26e}")
+    public  static String CLIENT_SECRET;
+
+    @Value("${KEYCLOACK_CLIENT_ID:emcare}")
+    public  static String CLIENT_ID;
+
+    @Value("${KEYCLOACK_REALM:emcare}")
+    public static  String REALM;
+
+    @Value("${KEYCLOACK_USER_NAME:emcare_admin}")
+    public static  String USER_NAME ;
+
+    @Value("${KEYCLOACK_PASSWORD:argusadmin}")
+    public static  String PASSWORD;
+
+    @Value("${KEYCLOACK_MASTER_USER_ID:emcare@gmail.com}")
+    public static  String MASTER_USER_ID ;
+
+    @Value("${KEYCLOACK_MASTER_USER_PASSWORD:argusadmin}")
+    public static  String MASTER_USER_PASSWORD;
 
     public Keycloak getInstance() {
         KeycloakSecurityContext context = (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
