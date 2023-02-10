@@ -86,7 +86,7 @@ public class KeyCloakConfig {
                 .password(KeyCloakConfig.PASSWORD)
                 .clientId(KeyCloakConfig.CLIENT_ID)
                 .authorization(context.getTokenString())
-                .clientSecret(CLIENT_SECRET)
+                .clientSecret(KeyCloakConfig.CLIENT_SECRET)
                 .resteasyClient(new ResteasyClientBuilder().connectionPoolSize(10).build())
                 .build();
         return keycloak;
