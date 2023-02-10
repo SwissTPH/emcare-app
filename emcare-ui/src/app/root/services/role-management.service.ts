@@ -7,7 +7,7 @@ import { environment } from "src/environments/environment";
 })
 export class RoleManagementService {
 
-    roleBaseURL = `${environment.apiUrl}/api/role`
+    roleBaseURL = `${environment.apiUrl}/role`
 
     constructor(private readonly http: HttpClient) { }
 

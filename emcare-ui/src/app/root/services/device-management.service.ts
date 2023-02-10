@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DeviceManagementService {
 
-    backendURL = `${environment.apiUrl}/api/device`;
+    backendURL = `${environment.apiUrl}/device`;
 
     constructor(private readonly http: HttpClient) { }
 

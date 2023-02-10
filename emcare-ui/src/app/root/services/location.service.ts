@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LocationService {
 
-  locationURL = `${environment.apiUrl}/api/location`;
+  locationURL = `${environment.apiUrl}/location`;
 
   constructor(private readonly http: HttpClient) { }
 

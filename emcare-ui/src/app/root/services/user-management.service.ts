@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserManagementService {
 
-  userURL = `${environment.apiUrl}/api/user`;
+  userURL = `${environment.apiUrl}/user`;
 
   constructor(private readonly http: HttpClient) { }
 

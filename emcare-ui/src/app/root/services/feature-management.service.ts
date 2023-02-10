@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FeatureManagementService {
 
-  featureURL = `${environment.apiUrl}/api/menu`;
+  featureURL = `${environment.apiUrl}/menu`;
 
   constructor(private readonly http: HttpClient) { }
 

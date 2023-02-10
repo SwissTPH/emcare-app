@@ -6,8 +6,8 @@ import { environment } from "src/environments/environment";
 })
 export class FhirService {
 
-    fhirBaseURL = `${environment.apiUrl}/api/emcare`;
-    deduplicationBaseURL = `${environment.apiUrl}/api/deduplication`;
+    fhirBaseURL = `${environment.apiUrl}/emcare`;
+    deduplicationBaseURL = `${environment.apiUrl}/deduplication`;
     fhirResourceBaseURL = `${environment.apiUrl}/fhir`;
 
     constructor(private readonly http: HttpClient) { }
@@ -72,27 +72,27 @@ export class FhirService {
     }
 
     addLaunguage(data) {
-        const url = `${environment.apiUrl}/api/language/add`;
+        const url = `${environment.apiUrl}/language/add`;
         return this.http.post(url, data, this.getHeaders());
     }
 
     getAllLaunguagesTranslations() {
-        const url = `${environment.apiUrl}/api/language/all`;
+        const url = `${environment.apiUrl}/language/all`;
         return this.http.get(url, this.getHeaders());
     }
 
     getAllLaunguages() {
-        const url = `${environment.apiUrl}/api/language/availableLanguage`;
+        const url = `${environment.apiUrl}/language/availableLanguage`;
         return this.http.get(url, this.getHeaders());
     }
 
     addNewLaunguage(data) {
-        const url = `${environment.apiUrl}/api/language/create`;
+        const url = `${environment.apiUrl}/language/create`;
         return this.http.post(url, data, this.getHeaders());
     }
 
     updateTranslation(data) {
-        const url = `${environment.apiUrl}/api/language/add`;
+        const url = `${environment.apiUrl}/language/add`;
         return this.http.post(url, data, this.getHeaders());
     }
 
@@ -112,7 +112,7 @@ export class FhirService {
     }
 
     getFacility() {
-        const url = `${environment.apiUrl}/api/emcare/active/facility`;
+        const url = `${environment.apiUrl}/emcare/active/facility`;
         return this.http.get(url, this.getHeaders());
     }
 
@@ -149,30 +149,30 @@ export class FhirService {
     getOrganizationByPageIndexAndSearch(pageIndex, search?) {
         let url;
         if (search) {
-            url = `${environment.apiUrl}/api/emcare/organization?pageNo=${pageIndex}&search=${search}`;
+            url = `${environment.apiUrl}/emcare/organization?pageNo=${pageIndex}&search=${search}`;
         } else {
-            url = `${environment.apiUrl}/api/emcare/organization?pageNo=${pageIndex}`;
+            url = `${environment.apiUrl}/emcare/organization?pageNo=${pageIndex}`;
         }
         return this.http.get(url, this.getHeaders());
     }
 
     getAllAdminSettings() {
-        const url = `${environment.apiUrl}/api/admin/setting`;
+        const url = `${environment.apiUrl}/admin/setting`;
         return this.http.get(url, this.getHeaders());
     }
 
     updateSetting(body) {
-        const url = `${environment.apiUrl}/api/admin/update`;
+        const url = `${environment.apiUrl}/admin/update`;
         return this.http.put(url, body, this.getHeaders());
     }
 
     getAllEmailTemplates() {
-        const url = `${environment.apiUrl}/api/admin/mail/template`;
+        const url = `${environment.apiUrl}/admin/mail/template`;
         return this.http.get(url, this.getHeaders());
     }
 
     getDashboardData() {
-        const url = `${environment.apiUrl}/api/dashboard`;
+        const url = `${environment.apiUrl}/dashboard`;
         return this.http.get(url, this.getHeaders());
     }
 
@@ -184,95 +184,95 @@ export class FhirService {
     getFacilityByPageAndSearch(pageIndex, search?) {
         let url;
         if (search) {
-            url = `${environment.apiUrl}/api/emcare/facility?pageNo=${pageIndex}&search=${search}`;
+            url = `${environment.apiUrl}/emcare/facility?pageNo=${pageIndex}&search=${search}`;
         } else {
-            url = `${environment.apiUrl}/api/emcare/facility?pageNo=${pageIndex}`;
+            url = `${environment.apiUrl}/emcare/facility?pageNo=${pageIndex}`;
         }
         return this.http.get(url, this.getHeaders());
     }
 
     getChartData() {
-        const url = `${environment.apiUrl}/api/dashboard/chart`;
+        const url = `${environment.apiUrl}/dashboard/chart`;
         return this.http.get(url, this.getHeaders());
     }
 
     getAllDuplicatePatientEntries() {
-        const url = `${environment.apiUrl}/api/deduplication/all`;
+        const url = `${environment.apiUrl}/deduplication/all`;
         return this.http.get(url, this.getHeaders());
     }
 
     getConsultationList(pageIndex, search?) {
         let url;
         if (search) {
-            url = `${environment.apiUrl}/api/questionnaire_response/page?pageNo=${pageIndex}&search=${search}`;
+            url = `${environment.apiUrl}/questionnaire_response/page?pageNo=${pageIndex}&search=${search}`;
         } else {
-            url = `${environment.apiUrl}/api/questionnaire_response/page?pageNo=${pageIndex}`;
+            url = `${environment.apiUrl}/questionnaire_response/page?pageNo=${pageIndex}`;
         }
         return this.http.get(url, this.getHeaders());
     }
 
     getPatientEncounter(id) {
-        let url = `${environment.apiUrl}/api/questionnaire_response/byPatient?patientId=${id}`;
+        let url = `${environment.apiUrl}/questionnaire_response/byPatient?patientId=${id}`;
         return this.http.get(url, this.getHeaders());
     }
 
     getAllCodes() {
-        let url = `${environment.apiUrl}/api/custom/code/all`;
+        let url = `${environment.apiUrl}/custom/code/all`;
         return this.http.get(url, this.getHeaders());
     }
 
     getCodes(pageIndex, search?) {
         let url;
         if (search) {
-            url = `${environment.apiUrl}/api/custom/code/page?pageNo=${pageIndex}&search=${search}`;
+            url = `${environment.apiUrl}/custom/code/page?pageNo=${pageIndex}&search=${search}`;
         } else {
-            url = `${environment.apiUrl}/api/custom/code/page?pageNo=${pageIndex}`;
+            url = `${environment.apiUrl}/custom/code/page?pageNo=${pageIndex}`;
         }
         return this.http.get(url, this.getHeaders());
     }
 
     getCodeById(codeId) {
-        let url = `${environment.apiUrl}/api/custom/code/${codeId}`;
+        let url = `${environment.apiUrl}/custom/code/${codeId}`;
         return this.http.get(url, this.getHeaders());
     }
 
     addCustomCode(codeObj) {
-        const url = `${environment.apiUrl}/api/custom/code/add`;
+        const url = `${environment.apiUrl}/custom/code/add`;
         return this.http.post(url, codeObj, this.getHeaders());
     }
 
     updateCustomCode(codeObj) {
-        const url = `${environment.apiUrl}/api/custom/code/update`;
+        const url = `${environment.apiUrl}/custom/code/update`;
         return this.http.put(url, codeObj, this.getHeaders());
     }
 
     addIndicator(body) {
-        const url = `${environment.apiUrl}/api/indicator/add`;
+        const url = `${environment.apiUrl}/indicator/add`;
         return this.http.post(url, body, this.getHeaders());
     }
 
     getIndicatorCompileValue(codeIdArr) {
-        const url = `${environment.apiUrl}/api/indicator/compile/value`;
+        const url = `${environment.apiUrl}/indicator/compile/value`;
         return this.http.post(url, codeIdArr, this.getHeaders());
     }
 
     getIndicators(pageIndex, search?) {
         let url;
         if (search) {
-            url = `${environment.apiUrl}/api/indicator/page?pageNo=${pageIndex}&search=${search}`;
+            url = `${environment.apiUrl}/indicator/page?pageNo=${pageIndex}&search=${search}`;
         } else {
-            url = `${environment.apiUrl}/api/indicator/page?pageNo=${pageIndex}`;
+            url = `${environment.apiUrl}/indicator/page?pageNo=${pageIndex}`;
         }
         return this.http.get(url, this.getHeaders());
     }
 
     getAllIndicators() {
-        let url = `${environment.apiUrl}/api/indicator/all`;
+        let url = `${environment.apiUrl}/indicator/all`;
         return this.http.get(url, this.getHeaders());
     }
 
     getIndicatorById(indicatorId) {
-        let url = `${environment.apiUrl}/api/indicator/${indicatorId}`;
+        let url = `${environment.apiUrl}/indicator/${indicatorId}`;
         return this.http.get(url, this.getHeaders());
     }
 }

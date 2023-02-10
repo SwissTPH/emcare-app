@@ -7,8 +7,10 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-
+    keycloakURL = `${environment.kcUrl}`;
     backendURL = `${environment.apiUrl}`;
+    ssoUser = `${environment.ssoUser}`;
+    ssoSecret = `${environment.ssoSecret}`;
     userInfo = new BehaviorSubject(null);
     jwtHelper = new JwtHelperService();
     userKey = 'sample-login-page';
@@ -42,7 +44,7 @@ export class AuthenticationService {
             facilityIds, roleName,
             countryCode, phone
         };
-        return this.http.post<any>(`${this.backendURL}/api/signup`, user)
+        return this.http.post<any>(`${this.backendURL}/signup`, user)
             .pipe(map(user => {
                 this.userInfo.next(user);
                 return user;
@@ -59,14 +61,13 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        const url = `https://emcare.argusoft.com/auth/realms/emcare/protocol/openid-connect/token`;
-        // const url = `${this.backendURL}/auth/realms/emcare/protocol/openid-connect/token`;
+        const url = `${this.keycloakURL}/realms/emcare/protocol/openid-connect/token`;
         const body = new HttpParams()
             .set('username', username)
             .set('password', password)
             .set('grant_type', 'password')
-            .set('client_id', 'emcare')
-            .set('client_secret', 'b5a37bde-8d54-4837-a8dc-12e1f808e26e');
+            .set('client_id', `${this.ssoUser}`)
+            .set('client_secret', `${this.ssoSecret}`);
         // return this.http.post<any>(`http:localhost:4200/users/authenticate`, { username, password }, { withCredentials: true })
         return this.http.post<any>(url, body.toString(), this.getHeaders());
     }
@@ -78,7 +79,7 @@ export class AuthenticationService {
                 'Authorization': `Bearer ${accessToken}`
             })
         };
-        const url = `${this.backendURL}/api/user`;
+        const url = `${this.backendURL}/user`;
         return this.http.get<any>(url, headerObj);
     }
 
@@ -113,40 +114,40 @@ export class AuthenticationService {
     }
 
     refreshToken() {
-        const url = `${this.backendURL}/auth/realms/emcare/protocol/openid-connect/token`;
+        const url = `${this.keycloakURL}/realms/emcare/protocol/openid-connect/token`;
         const body = new HttpParams()
             .set('grant_type', 'password')
             .set('password', 'argusadmin')
-            .set('client_id', 'emcare_client')
-            .set('client_secret', '5b929983-175b-4e9f-97d2-ac97dff78ce9');
+            .set('client_id', `${this.ssoUser}`)
+            .set('client_secret', `${this.ssoSecret}`);
         return this.http.post<any>(url, body.toString(), this.getHeaders());
     }
 
     getAllRolesForSignUp() {
-        const url = `${this.backendURL}/api/signup/roles`;
+        const url = `${this.backendURL}/signup/roles`;
         const headerObj = this.getHeaders();
         return this.http.get<any>(url, headerObj);
     }
 
     getAllFacilitiesForSignUp() {
-        const url = `${this.backendURL}/api/open/active/facility`;
+        const url = `${this.backendURL}/open/active/facility`;
         const headerObj = this.getHeaders();
         return this.http.get<any>(url, headerObj);
     }
 
     generateOTPFromUsername(username) {
-        const url = `${this.backendURL}/api/open/forgotpassword/generateotp`;
+        const url = `${this.backendURL}/open/forgotpassword/generateotp`;
         const body = { "emailId": username };
         return this.http.post<any>(url, body);
     }
 
     verifyOTP(body) {
-        const url = `${this.backendURL}/api/open/forgotpassword/verifyotp`;
+        const url = `${this.backendURL}/open/forgotpassword/verifyotp`;
         return this.http.post<any>(url, body);
     }
 
     resetPassword(body) {
-        const url = `${this.backendURL}/api/open/resetpassword`;
+        const url = `${this.backendURL}/open/resetpassword`;
         return this.http.put<any>(url, body);
     }
 }

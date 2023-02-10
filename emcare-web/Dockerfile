@@ -2,15 +2,15 @@ FROM maven:3.6.3-jdk-13 AS MAVEN_BUILD
 
 MAINTAINER Brian Hannaway
 
-COPY pom.xml /build/
-COPY src /build/src/
+COPY pom.xml build/
+COPY src build/src
 
-WORKDIR /build/
-RUN mvn package
+WORKDIR build
+RUN mvn clean install
 
-RUN mv /build/target/*.jar /build/target/app.jar
+RUN mv target/*.jar /app.jar
 
-FROM openjdk:8-jre-alpine
+FROM openjdk:13.0.2
 
 WORKDIR /app
 
@@ -40,7 +40,7 @@ ENV DB_USER emcare
 
 ENV IBM_KEY myannoyingkey
 
-COPY --from=MAVEN_BUILD /build/target/app.jar /app/
+COPY --from=MAVEN_BUILD /app.jar /app/
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 

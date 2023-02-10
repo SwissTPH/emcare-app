@@ -103,3 +103,36 @@ Em Care is available under the [Apache License 2.0](LICENSE).
 
 Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in these Data Files or Software without prior written authorization of the copyright holder.
 
+# Docker set-up
+
+
+1. copy the .env.example to .env and addapt KEYCLAOK_ADMIN and DB (MAIL AND TWILLO)
+
+2. startup keyclaok
+```
+docker-compose up -d keycloak postgres-kc
+```
+3. connect to http://172.17.0.1:8080/auth (host.docker.internal in windows) with the KEYCLAOK_ADMIN credentials
+
+4. create your realm, e.g. emcare
+
+5. select your realm and create a client
+
+6. activate credential on the client page: Access Type => confidential
+
+7. get the secret in the "credentials" tab that appeared and save it in the env file
+
+8. activate "Direct Access Grants Enabled" on the client
+
+9.  build the UI with the secret
+
+```
+docker-compose build nginx
+```
+10. create the first user
+
+11. update the .env
+
+12. connect to http://172.17.0.1:8080/
+
+
